@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 import random
 
-app = FastAPI(title="Zahra's Summery API")
+app = FastAPI(title=" Summery API")
 
 @app.get("/")
 def home():
