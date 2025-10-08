@@ -1,28 +1,27 @@
-#!/usr/bin/env python
-# coding: utf-8
+from fastapi import FastAPI
+import random
 
-# In[ ]:
+app = FastAPI(title="Zahra's Summery API")
 
+@app.get("/")
+def home():
+    return {
+        "message": "⚡ Zahra's Summery API is running successfully!",
+        "docs": "/docs",
+        "example_routes": ["/summery/test", "/summery/random"]
+    }
 
-from flask import Flask, jsonify
+@app.get("/summery/test")
+def test():
+    return {"status": "ok", "note": "API working successfully 💚"}
 
-app = Flask(__name__)
-port = 3000
-
-# داده‌های بخش Summary داشبورد
-dashboard_summary = {
-    "TotalEvents": 123,
-    "Anomalies": 45,             # درصد آنومالی‌ها به صورت عدد
-    "AveragePressure": 78.9,     # میانگین فشار
-    "AverageTemperature": 65.4   # میانگین دما
-}
-
-# API برای summary
-@app.route("/api/summary", methods=["GET"])
-def get_summary():
-    return jsonify(dashboard_summary)
-
-if __name__ == "__main__":   # ✅ اینجا درست شد
-    print(f"API running at http://localhost:{port}")
-    app.run(port=port)
-
+@app.get("/summery/random")
+def random_summary():
+    summaries = [
+        "Production is stable ✅",
+        "Minor failure detected ⚠️",
+        "System fully operational 💚",
+        "Testing new version 🚀",
+        "Everything works perfectly 🌟"
+    ]
+    return {"summary": random.choice(summaries)}
