@@ -6,7 +6,7 @@ app = FastAPI(title="Zahra's Summery API")
 @app.get("/")
 def home():
     return {
-        "message": "⚡ Zahra's Summery API is running successfully!",
+        "message": " Summery API is running successfully!",
         "docs": "/docs",
         "example_routes": ["/summery/test", "/summery/random"]
     }
